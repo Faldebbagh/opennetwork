@@ -1,0 +1,17 @@
+Install.sh
+software_install.sh
+
+
+Der Version 3 von OpenNetWork  hat die volgene änderung :
+1- DHCPCD abgestellt und mit isc-dhcp-server eingerechtet
+2- DNS skript in OpenNetWork ordner fragt ob der gerät in dervice.log exist wenn je wir dann nicht noch mal die daten gescreiben
+3- die port 22 und 80 und 443 für die interfaces eth1 und wlan0 freigeschaltet
+4- apache2 und php7 wird installiert um Webinterface verwaltung zu aktiverin
+5-eine Webinterface  verwaltung um :
+                                  1. wlan an un aus schalten
+                                  2. wlan name an zeigen und änderen
+                                  3. ip - domain - mac adressen sperren und entsperren
+                                  6. geräte anzeigen lassen
+                                  7. status von system .
+6 - die unterstuzung von BPI und benutzer abfrage ob die installation auf eine RPI oder BPI stattfindet
+7 - abfrage wehren dei installation ob Alle benötigeten Programme sind erfolgreich installiert

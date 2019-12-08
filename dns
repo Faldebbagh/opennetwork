@@ -1,0 +1,3 @@
+#!/bin/bash
+Log=/etc/opennetwork/device.log
+echo "|N="$4"     |I="$3"  |M="$2 >> $Log
