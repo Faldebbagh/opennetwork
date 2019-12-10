@@ -24,11 +24,16 @@ LOG=" --log-ip-options"
 #------------------------------------------------------------------------------
 $IPTABLES -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 $IPTABLES -A FORWARD -i eth1 -o wlan0 -j DROP
+$IPTABLES -I INPUT  -p tcp --dport 80 -j ACCEPT
+$IPTABLES -I INPUT  -p tcp --dport 443 -j ACCEPT
+$IPTABLES -I INPUT  -p tcp --dport 22 -j ACCEPT
 #Weib seiten blak list
 #------------------------------------------------------------------------------
 #die IpAdressen werde aus datei "/etc/opennetwork/iplist"geholt
 #domain nammen werde aus datei "/etc/opennetwork/weblist"geholt
 #mac adressen werden aus dem datei "/etc/opennetwork/macblist"geholt
+exec 1>/etc/opennetwork/firewall.log  2>&1
+echo $(date) Der Firewall wurde Gestartet
 sed -i '/^$/d' /etc/opennetwork/iplist
 
 while IFS= read -r ip
@@ -36,12 +41,14 @@ do
         $IPTABLES  -A OUTPUT -s "$ip" -j DROP
         $IPTABLES  -A INPUT -s "$ip" -j DROP
 	$IPTABLES  -I OUTPUT -s "$ip" --algo bm --from 1 --to 9999 -j REJECT
+	echo $(date) $ip wurde gesperrt
 done < "/etc/opennetwork/iplist"
 sed -i '/^$/d' /etc/opennetwork/weblist
 
 while IFS= read -r web
 do
 	$IPTABLES -I FORWARD  -m string --string "$web" --algo bm --from 1 --to 9999 -j REJECT
+	echo $(date) $web wurde gesperrt
 done < "/etc/opennetwork/weblist"
 
 sed -i '/^$/d' /etc/opennetwork/maclist
@@ -49,6 +56,7 @@ while IFS= read -r mac_line
 do
 	mac=`echo $mac_line | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'`
 	$IPTABLES -A INPUT -m mac --mac-source $mac  -j DROP
+	echo $(date) $mac wurde gesperrt
 done < "/etc/opennetwork/maclist"
 
 exit 0
