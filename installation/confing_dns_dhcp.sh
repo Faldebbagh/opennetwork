@@ -16,32 +16,32 @@ dhcp-range=interface:wlan0,192.168.1.100,192.168.1.254,24h
 "
 
 dhcp_auto="
-# Inform the DHCP server of our hostname for DDNS.
-hostname
-# Persist interface configuration when dhcpcd exits.
-persistent
-# Rapid commit support. Safe to enable by default because it requires the equivalent option set on the server to actually work.
-option rapid_commit
-# A list of options to request from the DHCP server.
-option domain_name_servers, domain_name, domain_search, host_name option classless_static_routes
-# Most distributions have NTP support.
-option ntp_servers
-# Respect the network MTU. This is applied to DHCP routes.
-option interface_mtu
-# A ServerID is required by RFC2131.
-require dhcp_server_identifier
-# Generate Stable Private IPv6 Addresses instead of hardware based ones
-slaac private
-# Lan Interface Konf.
-interface eth1
-static ip_address=192.168.2.1/24
-static routers=192.168.2.1
-static domain_name_servers=192.168.2.1
-#Wlan Interface Konf.
-interface wlan0
-static ip_address=192.168.1.1/24
-static routers=192.168.1.1
-static domain_name_servers=192.168.1.1
+ddns-update-style none;
+authoritative;
+log-facility local7;
+
+subnet 192.168.2.0 netmask 255.255.255.0 {
+ option routers 192.168.2.1;
+ option subnet-mask 255.255.255.0;
+ option broadcast-address 192.168.2.255;
+ option domain-name-servers 192.168.2.1;
+ option domain-name "eth1.lan";
+ default-lease-time 600;
+ max-lease-time 7200;
+ range 192.168.2.2 192.168.2.200;
+}
+
+subnet 192.168.1.0 netmask 255.255.255.0 {
+ option routers 192.168.1.1;
+ option subnet-mask 255.255.255.0;
+ option broadcast-address 192.168.1.255;
+ option domain-name-servers 192.168.1.1;
+ option domain-name "wlan0.lan";
+ default-lease-time 600;
+ max-lease-time 7200;
+ range 192.168.1.2 192.168.1.200;
+}
+
 "
 
 interface_auto="auto lo
@@ -130,17 +130,17 @@ iface eth1 inet static
 
 auto eth1
 iface eth1 inet static
-     address 192.168.2.1
-     netmask 255.255.255.0
-     gateway 192.168.2.1
-     dns-nameservers 192.168.2.1
+     address $eth1_ip
+     netmask $eth1_mask
+     gateway $eth1_ip
+     dns-nameservers 1$eth1_ip
 
 auto wlan0
 iface wlan0 inet static
-     address 192.168.1.1
-     netmask 255.255.255.0
-     gateway 192.168.1.1
-     dns-nameservers 192.168.1.1
+     address $wlan0_ip
+     netmask $wlan0_mask
+     gateway $wlan0_ip
+     dns-nameservers $wlan0_ip
 
 EOT
 
@@ -150,32 +150,32 @@ sleep 4
 echo $meldung_dhcp
 echo $meldung_warten
 sudo cat <<EOT >> /etc/dhcpcd.conf
-# Inform the DHCP server of our hostname for DDNS.
-hostname
-# Persist interface configuration when dhcpcd exits.
-persistent
-# Rapid commit support. Safe to enable by default because it requires the equivalent option set on the server to actually work.
-option rapid_commit
-# A list of options to request from the DHCP server.
-option domain_name_servers, domain_name, domain_search, host_name option classless_static_routes
-# Most distributions have NTP support.
-option ntp_servers
-# Respect the network MTU. This is applied to DHCP routes.
-option interface_mtu
-# A ServerID is required by RFC2131.
-require dhcp_server_identifier
-# Generate Stable Private IPv6 Addresses instead of hardware based ones
-slaac private
-# Lan Interface Konf.
-interface eth1
-static ip_address=$eth1_ip/24
-static routers=$eth1_ip
-static domain_name_servers=$eth1_ip
-#Wlan Interface Konf.
-interface wlan0
-static ip_address=$wlan1_ip/24
-static routers=$wlan1_ip
-static domain_name_servers=$wlan1_ip
+ddns-update-style none;
+authoritative;
+log-facility local7;
+
+subnet $eth1_subnet netmask 255.255.255.0 {
+ option routers eth1_ip;
+ option subnet-mask 255.255.255.0;
+ option broadcast-address 192.168.2.255;
+ option domain-name-servers $eth1_ip;
+ option domain-name "eth1.lan";
+ default-lease-time 600;
+ max-lease-time 7200;
+ range $eth1_dhcp;
+}
+
+subnet 192.168.1.0 netmask 255.255.255.0 {
+ option routers 192.168.1.1;
+ option subnet-mask 255.255.255.0;
+ option broadcast-address 192.168.1.255;
+ option domain-name-servers 192.168.1.1;
+ option domain-name "wlan0.lan";
+ default-lease-time 600;
+ max-lease-time 7200;
+ range 192.168.1.2 192.168.1.200;
+}
+
 EOT
 sleep 4
 clear
@@ -199,14 +199,21 @@ benutzer_dns_dhcp(){
 	read rpi_gateway
 	echo "Bitte geben Sie einen DNS Server ein"
 	read rpi_dns
+  echo "Bitte geben Sie subnet für eth1 (externer LAN-Adapter) ein"
+  echo "subnet beispeil für 192.168.1.0 - 192.168.1.254 ist 255.255.255.0"
+  read eth1_subnet
 	echo "Bitte geben Sie für eth1 (externer LAN-Adapter) die IP-Adresse ein || \ndie IP-Adresse muss außerhalb des DHCP Breichs sein"
 	read eth1_ip
-	echo "Bitte geben Sie für eth1 den DHCP breich ein || in form von: 192.168.*.100,192.168.*.254"
+	echo "Bitte geben Sie für eth1 den DHCP breich ein || in form von: 192.168.*.100 192.168.*.254"
 	read eth1_dhcp
+  echo "Bitte geben Sie die Netzmaske für Eth1 ein"
+  read eth1_mask
 	echo "Bitte geben Sie die WLAN IP-Adresse ein  || \ndie IP-Adresse muss außerhalb der DHCP Breichs sein"
-  read wlan1_ip
-  echo "Bitte geben Sie den WLAN DHCP Breich ein || in form von: 192.168.*.100,192.168.*.254 || "
-  read wlan1_dhcp
+  read wlan0_ip
+  echo "Bitte geben Sie den WLAN DHCP Breich ein || in form von: 192.168.*.100 192.168.*.254 || "
+  read wlan0_dhcp
+  echo "Bitte geben Sie die Netzmaske für wlan0 ein"
+  read wlan0_mask
 	confing_static
 	;;
 	esac
