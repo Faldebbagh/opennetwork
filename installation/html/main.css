@@ -1,0 +1,167 @@
+.home {
+   background: #bdc7cc;
+   background-image: url("back.png");
+   background-repeat: no-repeat;
+   background-position: center;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
+   vertical-align: middle;
+
+}
+.box{
+height:800px;
+width:auto;
+border:0px
+solid #ccc;
+font:16px/26px Georgia, Garamond, Serif;
+overflow:auto;
+}
+.scroll_dinst {
+height:30%;
+width:400px;
+border:0px
+solid #ccc;
+font:13px Georgia, Garamond, Serif;
+overflow:auto;
+}
+.scroll_web {
+height:30%;
+width:120px;
+border:0px
+solid #ccc;
+font:16px/26px Georgia, Garamond, Serif;
+overflow:auto;
+}
+
+.scroll_mac {
+height:30%;
+width:280px;
+border:0px
+solid #ccc;
+font:16px/26px Georgia, Garamond, Serif;
+overflow:auto;
+}
+.scroll2 {
+height:30%;
+width:150px;
+border:0px
+solid #ccc;
+font:16px/26px Georgia, Garamond, Serif;
+overflow:auto;
+}
+.scroll {
+height:200px;
+width:400px;
+border:0px
+solid #ccc;
+font:15px Georgia, Garamond, Serif;
+overflow:auto;
+}
+.scroll > span {
+    background: #bbb;}
+* {
+  box-sizing: border-box;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.button_list{
+background-color: #f1f1f1;
+}
+.formular{
+display: none;
+padding: 10px;
+box-shadow: 0px 8px 16px 0px rgba(4,4,4,4.2);
+width:35%;
+}
+
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #0D0B1D;
+  color:#FF9F00;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0px 8px 16px 0px rgba(4,4,4,4.2);
+}
+
+/* The Close Button */
+.close {
+  top: 10px;
+  padding-left: 90%;
+  color: #aaaaaa;
+  float: top;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: block;
+  cursor: pointer;
+}

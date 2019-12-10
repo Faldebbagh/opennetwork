@@ -1,0 +1,57 @@
+#!/bin/bash
+echo "Flushing iptables rules..."
+sleep 1
+iptables -F
+iptables -X
+iptables -t nat -F
+iptables -t nat -X
+iptables -t mangle -F
+iptables -t mangle -X
+iptables -P INPUT ACCEPT
+iptables -P FORWARD ACCEPT
+iptables -P OUTPUT ACCEPT
+sleep 5
+#################iptabels resetet
+IPTABLES="/sbin/iptables"
+ip_list="/etc/opennetwork/iplist"
+web_list="/etc/opennetwork/web_list"
+mac_list="/etc/opennetwork/mac_list"
+# Logging options.
+#------------------------------------------------------------------------------
+LOG="LOG --log-level debug --log-tcp-sequence --log-tcp-options"
+LOG=" --log-ip-options"
+#
+#------------------------------------------------------------------------------
+$IPTABLES -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+$IPTABLES -A FORWARD -i eth1 -o wlan0 -j DROP
+#Weib seiten blak list
+#------------------------------------------------------------------------------
+#die IpAdressen werde aus datei "/etc/opennetwork/iplist"geholt
+#domain nammen werde aus datei "/etc/opennetwork/weblist"geholt
+#mac adressen werden aus dem datei "/etc/opennetwork/macblist"geholt
+sed -i '/^$/d' /etc/opennetwork/iplist
+
+while IFS= read -r ip
+do
+        $IPTABLES  -A OUTPUT -s "$ip" -j DROP
+        $IPTABLES  -A INPUT -s "$ip" -j DROP
+	$IPTABLES  -I OUTPUT -s "$ip" --algo bm --from 1 --to 9999 -j REJECT
+done < "/etc/opennetwork/iplist"
+sed -i '/^$/d' /etc/opennetwork/weblist
+
+while IFS= read -r web
+do
+	$IPTABLES -I FORWARD  -m string --string "$web" --algo bm --from 1 --to 9999 -j REJECT
+done < "/etc/opennetwork/weblist"
+
+sed -i '/^$/d' /etc/opennetwork/maclist
+while IFS= read -r mac_line
+do
+	mac=`echo $mac_line | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'`
+	$IPTABLES -A INPUT -m mac --mac-source $mac  -j DROP
+done < "/etc/opennetwork/maclist"
+
+exit 0
+
+
+
