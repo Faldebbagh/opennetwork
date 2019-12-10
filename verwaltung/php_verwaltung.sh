@@ -110,9 +110,9 @@ mac_entsperr(){
         case $mac_abfrage in
         [tT])
         messeg="Die Mac-Adresse [$mac] ist nicht gesperrt"
-        *)
         echo "<script type='text/javascript'>alert('$messeg');</script>";
         ;;
+	*)
         sudo sed -i /$mac/d $mac_list
         messeg="Die mac-Adresse [$mac] wurde aus der Liste enfernt!"
         echo "<script type='text/javascript'>alert('$messeg');</script>";
@@ -170,7 +170,7 @@ zurck(){
         sudo service dnsmq restart
 }
 
-f [ $# -gt 0 ];then
+if [ $# -gt 0 ];then
          case "$1" in
                 [aA])
                 wlan_auschalten
