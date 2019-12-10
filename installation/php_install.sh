@@ -18,6 +18,17 @@ install_start(){
 	cp -r ./ /etc/opennetwork
   	fi
 	sleep 1
+	software_chek(){
+	result=`dpkg -s $software_name | grep 'Status: install ok installed' | echo 1`
+	if [ $result == "1" ]; then
+  	echo OK !
+  	else
+  	echo FAIL !!!!
+  	echo "Der Paket $software_name waurde nicht Rechtig installiert"
+  	echo "Bitte kontroliren Sie mit 'journal -xe'"
+  	exit
+	fi
+	}
   echo "chek if apache2 istalliert wurde !"
   software_name="apache2"
   software_chek
