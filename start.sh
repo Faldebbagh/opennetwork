@@ -1,6 +1,15 @@
 #!/bin/bash
 set -e
 set -o pipefail
+	clear
+	echo ################################################
+	echo            ---==  OpenNetwork  ==---
+	echo ################################################
+	echo
+	echo             Projekt Teilnehmer:
+	echo             Jonas, Firas, Tim R.
+	echo
+	echo ________________________________________________
 path="/etc/opennetwork"
 info="./info"
 info_ende="/etc/opennetwork/info"
@@ -29,16 +38,7 @@ if [ -f $info_ende ];then
 	#Mneü anzeigen wenn OpenNetwork installiert ist:
 	while true;
 	do
-	
 	clear
-	echo ################################################
-	echo            ---==  OpenNetwork  ==---
-	echo ################################################
-	echo
-	echo             Projekt Teilnehmer:
-	echo             Jonas, Firas, Tim R.
-	echo
-	echo ________________________________________________
 	#echo $test
 	#echo $anz
 	echo "Sie haben bereits eine Erfolgreiche OpenNetwork Installation."
