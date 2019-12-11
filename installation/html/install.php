@@ -76,17 +76,18 @@ $(document).ready(function() {
          <br><input id="wlan_password" type="password" name="wlan_password" value=""/> <input type="checkbox" onclick="pass_show()"> Show Password </br>
        </div>
        <div class="eth0 modal-content w3-animate-left">
-         <br>Gebn Sie Ihre Neuen Wlan Name ein:<br />
-          <br><input id="" type="text" name="wlan_name" value=""/></br>
-         <br>Gebn Sie Ihre Neuen Wlan Password  ein: Muss min. 8 zeischnen <br />
-         <br><input id="wlan_password" type="password" name="wlan_password" value=""/> <input type="checkbox" onclick="pass_show()"> Show Password </br>
+        <br>eth0 IpAdress  : <input id="" type="text" name="wlan_name" value=""/></br>
+        <br>eth0 Submask   :   <input id="" type="text" name="wlan_name" value=""/></br>
+        <br>eth0 DNS       :   <input id="" type="text" name="wlan_name" value=""/></br>
        </div>
        <div class="eth1 modal-content w3-animate-left">
-         <br>Gebn Sie Ihre Neuen Wlan Name ein:<br />
-          <br><input id="" type="text" name="wlan_name" value=""/></br>
-         <br>Gebn Sie Ihre Neuen Wlan Password  ein: Muss min. 8 zeischnen <br />
-         <br><input id="wlan_password" type="password" name="wlan_password" value=""/> <input type="checkbox" onclick="pass_show()"> Show Password </br>
-       </div>
+         <br>etho Einstellung ex. LAN  </br>
+          <br>IpAdress    : <input id="" type="text" name="wlan_name" value=""/></br>
+          <br>Submask     : <input id="" type="text" name="wlan_name" value=""/></br>
+          <br>DNS         : <input id="" type="text" name="wlan_name" value=""/></br>
+          <br>dhcp anfang : <input id="" type="text" name="wlan_name" value="ex. 192.168.1.1"/></br>
+          <br>dhcp End    : <input id="" type="text" name="wlan_name" value="ex. 192.168.1.255"/></br>
+          <br> 
        <div class="wlan0 modal-content w3-animate-left">
          <br>Gebn Sie Ihre Neuen Wlan Name ein:<br />
           <br><input id="" type="text" name="wlan_name" value=""/></br>
