@@ -118,11 +118,10 @@ background-color: #f1f1f1;
 }
 .formular{
 display: none;
-padding: 10px;
-box-shadow: 0px 8px 16px 0px rgba(4,4,4,4.2);
-width:35%;
 }
-
+.formular2{
+display: none;
+}
 
 .modal {
   display: none; /* Hidden by default */
