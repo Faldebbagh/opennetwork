@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-#set -o pipefail
+set -o pipefail
 	clear
 	echo ################################################
 	echo            ---==  OpenNetwork  ==---
