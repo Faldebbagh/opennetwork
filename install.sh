@@ -9,11 +9,11 @@ source ./installation/routing.sh
 
 confing_art(){
 	clear
-        echo "wollen Sie dass Ihre RPI automatische Einstellungen vorgenommen [Y/N]"
+        echo "wollen Sie, dass ihr RPI die automatischen Einstellungen vornimmt? [Y/N]"
         echo "RPI           ||  IP : DHCP - Auto    "
         echo "wlan          ||  Ip : 192.168.1.1/24 "   "DHCP 192.168.1.100 - 192.168.1.254"
         echo "Eth1          ||  IP : 192.168.2.1/24 "   "DHCP 192.168.2.100 - 192.168.2.254"
-	echo "Wlan Name: OpenNwtwork     Wlan kanal : 10       Wlan Kenntwort : 4EMT7E9CPP "
+	echo "Wlan Name: OpenNetwork     Wlan kanal : 10       Wlan Kenntwort : 4EMT7E9CPP "
 	read benutzer_angabe
 	}
 clear
