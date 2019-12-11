@@ -47,10 +47,8 @@ wlan_change(){
 w_info(){
         wlan_name=`sudo cat $hostapd | grep "ssid=" | sed  s/ssid=//`
         wlan_password=`sudo cat $hostapd | grep "wpa_passphrase=" | sed  s/wpa_passphrase=//`
-        messeg="Ihre Wlan Name : $wlan_name"
-	messeg2="Ihre Wlan Password : $wlan_password "
-	echo "<script type='text/javascript'>alert('$messeg');</script>";
-	echo "<script type='text/javascript'>alert('$messeg2');</script>";
+        echo "Ihre Wlan Name : $wlan_name"
+	echo "Ihre Wlan Password : $wlan_password "
 	}
 
 web_liste(){
