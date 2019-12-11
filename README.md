@@ -1,1 +1,3 @@
-# opennetwork
+# opennetwort
+
+Ein OpenSource Verwaltungsnetzwerk
