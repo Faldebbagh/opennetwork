@@ -13,5 +13,6 @@ Der Version 3 von OpenNetWork  hat die volgene änderung :
                                   3. ip - domain - mac adressen sperren und entsperren
                                   6. geräte anzeigen lassen
                                   7. status von system .
-6 - die unterstuzung von BPI und benutzer abfrage ob die installation auf eine RPI oder BPI stattfindet
-7 - abfrage wehren dei installation ob Alle benötigeten Programme sind erfolgreich installiert
+
+6 - abfrage wehren dei installation ob Alle benötigeten Programme sind erfolgreich installiert
+7 - installation per web interface ermöglichen 
