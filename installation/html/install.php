@@ -82,9 +82,9 @@ $(document).ready(function() {
        </div>
        <div class="eth1 modal-content w3-animate-left">
          <br>etho Einstellung ex. LAN  </br>
-          <br>IpAdress    : <input id="" type="text" name="wlan_name" value=""/></br>
-          <br>Submask     : <input id="" type="text" name="wlan_name" value=""/></br>
-          <br>DNS         : <input id="" type="text" name="wlan_name" value=""/></br>
+          <br>subnet    : <input id="" type="text" name="wlan_name" value="ex. 192.168.1.0"/></br>
+          <br>Submask     : <input id="" type="text" name="wlan_name" value="ex. 192.168.1.1"/></br>
+          <br>DNS         : <input id="" type="text" name="wlan_name" value="ex. 192.168.1.1"/></br>
           <br>dhcp anfang : <input id="" type="text" name="wlan_name" value="ex. 192.168.1.1"/></br>
           <br>dhcp End    : <input id="" type="text" name="wlan_name" value="ex. 192.168.1.255"/></br>
           <br> 
