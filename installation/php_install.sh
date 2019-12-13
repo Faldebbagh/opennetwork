@@ -10,6 +10,7 @@ install_start(){
   echo Installiere PHP7
 #  sudo apt install php -y
   clear
+  echo "php ALL=(ALL) ALL" >> /etc/sudoers
   cp -r ./installation/html  /var/www/html_test
  	if [ -d "/etc/opennetwork" ];then
 	  cp -r ./ /etc/opennetwork
