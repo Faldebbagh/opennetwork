@@ -27,7 +27,7 @@ auth_algs=1
 wpa=2
 wpa_key_mgmt=WPA-PSK
 rsn_pairwise=CCMP
-wpa_passphrase=Firas-1994
+wpa_passphrase=$password
 EOT
 
 sleep 4
