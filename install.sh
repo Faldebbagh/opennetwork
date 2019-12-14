@@ -7,16 +7,18 @@ source ./installation/confing_wlan.sh
 source ./installation/confing_wlan_auto.sh
 source ./installation/routing.sh
 
+password=`openssl rand -base64 48 | cut -c1-10`
 confing_art(){
-	clear
-        echo "wollen Sie, dass ihr RPI die automatischen Einstellungen vornimmt? [Y/N]"
+        clear
+        echo "wollen Sie dass Ihre RPI automatische Einstellungen vorgenommen [Y/N]"
         echo "RPI           ||  IP : DHCP - Auto    "
         echo "wlan          ||  Ip : 192.168.1.1/24 "   "DHCP 192.168.1.100 - 192.168.1.254"
         echo "Eth1          ||  IP : 192.168.2.1/24 "   "DHCP 192.168.2.100 - 192.168.2.254"
-	echo "Wlan Name: OpenNetwork     Wlan kanal : 10       Wlan Kenntwort : 4EMT7E9CPP "
-	read benutzer_angabe
-	}
+        echo "Wlan Name: OpenNwtwork     Wlan kanal : 10      Wlan Kenntwort:$password     "
+        read benutzer_angabe
+        }
 clear
+
 
 #Erneut abfragen ob die Installation von OpenNetwork erfolgreich war.
 #Wenn das der Fall ist: Script starten:
