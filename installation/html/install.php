@@ -73,7 +73,7 @@ $(document).ready(function() {
          <br>Gebn Sie Ihre Neuen Wlan Name ein:<br />
           <br><input id="" type="text" name="wlan_name" value=""/></br>
          <br>Gebn Sie Ihre Neuen Wlan Password  ein: Muss min. 8 zeischnen <br />
-         <br><input id="wlan_password" type="password" name="wlan_password" value=""/> <input type="checkbox" onclick="pass_show()"> Show Password </br>
+         <br><input id="wlan_password" type="password" name="wlan_password" onfocus="this.value=''" value="Min 8 zeischnen"/> <input type="checkbox" onclick="pass_show()"> Show Password </br>
        </div>
        <div class="eth0 modal-content w3-animate-left">
         <br>eth0 IpAdress  : <input id="" type="text" name="wlan_name" value=""/></br>
@@ -81,13 +81,16 @@ $(document).ready(function() {
         <br>eth0 DNS       :   <input id="" type="text" name="wlan_name" value=""/></br>
        </div>
        <div class="eth1 modal-content w3-animate-left">
-         <br>etho Einstellung ex. LAN  </br>
-          <br>subnet    : <input id="" type="text" name="wlan_name" value="ex. 192.168.1.0"/></br>
-          <br>Submask     : <input id="" type="text" name="wlan_name" value="ex. 192.168.1.1"/></br>
-          <br>DNS         : <input id="" type="text" name="wlan_name" value="ex. 192.168.1.1"/></br>
-          <br>dhcp anfang : <input id="" type="text" name="wlan_name" value="ex. 192.168.1.1"/></br>
-          <br>dhcp End    : <input id="" type="text" name="wlan_name" value="ex. 192.168.1.255"/></br>
-          <br> 
+         <br>Eth1 Einstellung ex. LAN  </br>
+          <br>subnet      : <input id="" type="text" name="wlan_name" onfocus="this.value=''" value="192.168.1.0"/></br>
+          <br>Submask     : <input id="" type="text" name="wlan_name" onfocus="this.value=''" value="192.168.1.1"/></br>
+          <br>DNS         : <input id="" type="text" name="wlan_name" onfocus="this.value=''" value="192.168.1.1"/></br>
+          <br>dhcp anfang : <input id="" type="text" name="wlan_name" onfocus="this.value=''" value="192.168.1.1"/></br>
+          <br>dhcp End    : <input id="" type="text" name="wlan_name" onfocus="this.value=''" value="192.168.1.255"/></br>
+          <br></br>
+          <a href="#">&laquo; Previous</a>
+          <a href="#">Next &raquo;</a>
+        </div>
        <div class="wlan0 modal-content w3-animate-left">
          <br>Gebn Sie Ihre Neuen Wlan Name ein:<br />
           <br><input id="" type="text" name="wlan_name" value=""/></br>
