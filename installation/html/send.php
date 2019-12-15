@@ -1,6 +1,6 @@
 <?php
 $in=$_POST['install'];
-if ($in == "auto"){
+if ($in == "conf"){
 $wn=$_POST['wname'];
 $wp=$_POST['wpassword'];
 $et0_a=$_POST['eth0_a'];
@@ -40,8 +40,11 @@ echo "- Submask       :".  $wl_sm . "<p></p>";
 echo "- DNS           :".  $wl_d . "<p></p>";
 echo "- dhcp anfang   :".  $wl_dha . "<p></p>";
 echo "- dhcp ende     :".  $wl_dhe . "<p></p>";
-$wlan_info=shell_exec('sudo /etc/opennetwork/verwaltung/php_verwaltung.sh x');
-echo $wlan_info;
-
+}
+if ($in == "auto"){
+  echo "<h3>" . "Ihre Installation Wird gestartet" . "</h3>";
+  echo "Bitte laden sie Die Seite nicht neu weiter installation info werden hier angezeigt" . "<p></p>" ;
+  $wlan_info=shell_exec('sudo /etc/opennetwork/verwaltung/php_verwaltung.sh X');
+  echo $wlan_info;
 }
 ?>
