@@ -220,6 +220,8 @@ benutzer_dns_dhcp(){
 }
 
 confing_dns_dhcp(){
+case $benutzer_install_art in
+[nN])
   #########################################################
   echo "alte Einstellungen überprüfen: DNS _ DHCP _ Hostapd"
   if [ -f "/etc/network/interfaces" ]; then
@@ -264,4 +266,52 @@ confing_dns_dhcp(){
   sudo systemctl enable dnsmasq
   sleep 4
   clear
+;;
+[wW])
+echo "alte Einstellungen überprüfen: DNS _ DHCP _ Hostapd" "<p></p>"
+if [ -f "/etc/network/interfaces" ]; then
+  sudo mv /etc/network/interfaces /etc/network/interfaces.old
+  echo "alte interfaces Einstellung wurde als Interfaces.old gesichert" "<p></p>"
+  sleep 4
+  clear
+fi
+########## WLAN-Interface - 2. Eth konfigurieren DHCP -->
+##alte conf sichern
+if [ -f "/etc/dhcpcd.conf" ]; then
+  sudo mv /etc/dhcpcd.conf /etc/dhcpcd.conf.old
+  echo "alte dhcpcd.cof wurde erkannt" "<p></p>"
+  echo "alte Einstellung wurde als dhcpcd.conf.old gesichert" "<p></p>"
+  sleep 4
+  clear
+fi
+####### in fall alte dhcp server luft
+if [ -f "/etc/dnsmasq.conf" ]; then
+  sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.old
+  echo "DNS Konfiguration wurde erkannt...""<p></p>"
+  echo "alte Konfiguration wurde als dnsmasq.conf.old gesichrt...""<p></p>"
+  sleep 4
+  clear
+fi
+confing_auto
+sleep 4
+clear
+echo "#####################################################################""<p></p>"
+echo "##DHCP-Server und DNS-Cache prüfen und in Betrieb nehmen (dnsmasq)###""<p></p>"
+echo "#####################################################################""<p></p>"
+echo "##Die Syntaxprüfung sollte mit OK erfolgreich sein.##################""<p></p>"
+echo "#####################################################################""<p></p>"
+dnsmasq --test -C /etc/dnsmasq.conf
+sleep 4
+clear
+echo "<------ DNSMASQ wird neu gestartet: ------>""<p></p>"
+sudo systemctl restart dnsmasq
+sleep 4
+clear
+echo "<------ DNSMASQ beim Systemstart starten: ------>""<p></p>"
+sudo systemctl enable dnsmasq
+sleep 4
+clear
+;;
+*)
+esac
 }
