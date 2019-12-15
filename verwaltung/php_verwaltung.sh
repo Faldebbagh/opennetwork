@@ -12,7 +12,6 @@ hostapd="/etc/hostapd/hostapd.conf"
 ip_list="/etc/opennetwork/iplist"
 mac_list="/etc/opennetwork/maclist"
 web_list="/etc/opennetwork/weblist"
-
 wlan_auschalten(){
         sudo systemctl daemon-reload
         sudo service hostapd stop
@@ -159,6 +158,13 @@ status(){
         serv_name="rules.sh"
         echo $d "Firewall - status" && service $serv_name restart && system_status $serv_name
 }
+
+php_install_auto(){
+ benutzer_auswahl="y"
+ benutzer_angabe="y"
+ sudo bash '/etc/opennetwork/installation/install.sh' auto
+
+}
 zurck(){
 	rm $ip_list
         rm $web_list
@@ -224,7 +230,9 @@ if [ $# -gt 0 ];then
 		[tT])
 		status
                 ;;
-
+                [xX])
+                 php_install_auto
+                ;;
 
         *)
             ;;
