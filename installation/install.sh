@@ -2,12 +2,58 @@
 #Funktionen/Methoden von andere Scripte importieren:
 source ./installation/black_list.sh
 source ./installation/php_install.sh
-source ./installation/confing_dns_dhcp.sh
-source ./installation/software_install.sh
-source ./installation/confing_wlan.sh
-source ./installation/confing_wlan_auto.sh
-source ./installation/routing.sh
+source /etc/opennetwork/installation/confing_dns_dhcp.sh
+source /etc/opennetwork/installation/software_install.sh
+source /etc/opennetwork/installation/confing_wlan.sh
+source /etc/opennetwork/installation/confing_wlan_auto.sh
+source /etc/opennetwork/installation/installation/routing.sh
 ####### Version 3
+software_chek(){
+        result=`dpkg -s $software_name | grep 'Status: install ok installed' | echo 1`
+        if [ $result == "1" ]; then
+        echo "OK !" "<p></p>"
+        else
+        echo "FAIL !!!!" "<p></p>"
+        echo "Der Paket $software_name waurde nicht Rechtig installiert"  "<p></p>"
+        echo "Bitte kontroliren Sie mit 'journal -xe'"
+        exit
+	fi
+}
+if [ "$1" == "auto" ]
+  then
+	benutzer_auswahl="Y"
+	benutzer_angabe="Y"
+  benutzer_install_art="W"
+	echo "chek if DNSMASQ _name istalliert wurde !"  "<p></p>"
+	software_name="dnsmasq"
+	software_chek
+	echo "chek if hostapd istalliert wurde !"  "<p></p>"
+	software_name="hostapd"
+	software_chek $software_name
+	echo "chek if isc-dhcp-Server istalliert wurde !"  "<p></p>"
+	software_name="isc-dhcp-server"
+	software_chek $software_name
+	echo "chek if apache2 istalliert wurde !"  "<p></p>"
+	software_name="apache2"
+	software_chek $software_name
+	echo "chek if PHP istalliert wurde !"  "<p></p>"
+	software_name="php"
+	software_chek $software_name
+	echo "chek if FIRAS_test  HAHA istalliert wurde !"  "<p></p>"
+	software_name="FIRAS_TEST"
+	software_chek $software_name
+	echo "Alle benötigeten Programme sind erfolgreich installiert" "<p></p>"
+	echo "<p></p>"
+  echo " Installiere: DNS und DHCP... " "<p></p>" && sleep 3
+  confing_dns_dhcp
+  echo " Installiere: WLAN und DHCP... " "<p></p>" && sleep 3
+  confing_wlan_auto
+  echo " Installiere: Routing...""<p></p>"
+  routing
+  messeg="Die Installation wurde erfolgreich abgeschlossen"
+  echo "<script type='text/javascript'>alert('$messeg');</script>";
+exit 5
+fi
 confing_art(){
 	clear
         echo "wollen Sie dass Ihre RPI automatische Einstellungen vorgenommen [Y/N]"
@@ -46,6 +92,7 @@ echo Wollen Sie die installation per Web Interface starten? [W]
 	read benutzer_auswahl
 	case $benutzer_auswahl in
 	[yY])
+  benutzer_install_art="N"
 	confing_art
 	echo " Installiere: Software... " && sleep 3
  	software_install
