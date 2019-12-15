@@ -111,7 +111,7 @@ $(document).ready(function(){
 });
 
 </script>
-<div id="results" style="margin-left:50px">
+<div id="results" style="margin-left:50px;font-size:small;padding: 10px;width:35%; overflow:auto;">
 <!-- All data will display here  -->
 </div>
     <div class="w3-animate-left" style="margin-left:50px">
