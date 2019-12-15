@@ -71,11 +71,6 @@ $(document).ready(function(){
        var wlan_dhe = $("#wlan_dhcpe").val();
        $(".wlan0").hide();
        $(".w3-animate-left").hide();
-       if( wname==''){alert("Please fill out the form");}
-       else if(vname==''){alert('Name field is required');}
-       else if(wpassword==''){alert('Email field is required');}
-
-       else{
          $(".wating").show();
         $.ajax({
             type: "POST",
@@ -105,7 +100,6 @@ $(document).ready(function(){
                 $(".wating").hide();
             }
         });
-      }
     });
 });
 </script>
@@ -130,6 +124,7 @@ $(document).ready(function(){
 });
 </script>
 <div class="wating" >
+  <H3>Die Installation kann ca. 5 min dauern ..................... </h3>
   </div>
   <div  id="results" style="margin-left:50px;font-size:small;padding: 10px;width:35%; overflow:auto;" >
 <!-- All data will display here  -->
@@ -148,7 +143,7 @@ $(document).ready(function(){
         <p>wlan          ||  Ip : 192.168.1.1/24    DHCP 192.168.1.100 - 192.168.1.254</p>
         <p>Eth1          ||  IP : 192.168.2.1/24    DHCP 192.168.2.100 - 192.168.2.254</p>
         <p>Wlan Name: OpenNwtwork     Wlan kanal : 10       Wlan Kenntwort : 4EMT7E9CPP </p>
-        <input  type="submit" value="absenden"/>
+        <input id="submit" type="submit" value="absenden"/>
     </form>
    </div>
    <input  type="radio" name="ip_menu" value="pro_install" />erwertet install<br />
@@ -171,32 +166,32 @@ $(document).ready(function(){
        </div>
        <div class="eth0 modal-content w3-animate-left">
          <h3>eth0 network Einstellung Intern. LAN  </h3>
-        <br>eth0 IpAdress  :</br><p><input required id="eth0_adresse" type="text" placeholder="ex. 192.168.178.1" /></p>
-        <br>eth0 Submask   :</br><p><input required id="eth0_mask" type="text" placeholder="ex. 255.255.255.0"/></p>
-        <br>eth0 DNS       :</br><p><input required id="eth0_dns" type="text" placeholder="ex. 192.168.178.1"/></p>
+        <br>eth0 IpAdress  :</br><p><input required id="eth0_adresse" type="text" placeholder="ex. 192.168.178.1" value=""/></p>
+        <br>eth0 Submask   :</br><p><input required id="eth0_mask" type="text" placeholder="ex. 255.255.255.0" value=""/></p>
+        <br>eth0 DNS       :</br><p><input required id="eth0_dns" type="text" placeholder="ex. 192.168.178.1" value=""/></p>
         <a href="wlan">&laquo; Previous</a>
         <a href="eth1">Next &raquo;</a>
        </div>
        <div class="eth1 modal-content w3-animate-left">
          <h3>eth1 network Einstellung ex. LAN  </h3>
-          <br>RouterIp    : </br><p><input required id="eth1_router" type="text" placeholder="ex. 192.168.1.1"/></p>
-          <br>subnet      : </br><p><input required id="eth1_adresse" type="text" placeholder="ex. 192.168.1.0"/></p>
-          <br>Submask     : </br><p><input required id="eth1_submask" type="text"  placeholder="ex. 192.168.1.1"/></p>
-          <br>DNS         : </br><p><input required id="eth1_dns" type="text"  placeholder="ex. 192.168.1.1"/></p>
-          <br>dhcp anfang : </br><p><input required id="eth1_dhcpa" type="text"  placeholder="ex. 192.168.1.1"/></p>
-          <br>dhcp End    : </br><p><input required id="eth1_dhcpe" type="text"  placeholder="ex. 192.168.1.255"/></p>
+          <br>RouterIp    : </br><p><input required id="eth1_router" type="text" placeholder="ex. 192.168.1.1" value=""/></p>
+          <br>subnet      : </br><p><input required id="eth1_adresse" type="text" placeholder="ex. 192.168.1.0" value=""/></p>
+          <br>Submask     : </br><p><input required id="eth1_submask" type="text"  placeholder="ex. 192.168.1.1" value=""/></p>
+          <br>DNS         : </br><p><input required id="eth1_dns" type="text"  placeholder="ex. 192.168.1.1" value=""/></p>
+          <br>dhcp anfang : </br><p><input required id="eth1_dhcpa" type="text"  placeholder="ex. 192.168.1.1" value=""/></p>
+          <br>dhcp End    : </br><p><input required id="eth1_dhcpe" type="text"  placeholder="ex. 192.168.1.255" value=""/></p>
           <br></br>
           <a href="eth0">&laquo; Previous</a>
           <a href="wlan0">Next &raquo;</a>
         </div>
        <div class="wlan0 modal-content w3-animate-left">
          <h3>Wlan Network Einstellung Access point</h3>
-         <br>RouterIp    : </br><p><input required id="wlan_router" type="text" placeholder="ex. 192.168.2.1"/></p>
-         <br>subnet      : </br><p><input required id="wlan_adresse" type="text" placeholder="ex. 192.168.2.0"/></p>
-         <br>Submask     : </br><p><input required id="wlan_submask" type="text" placeholder="ex. 192.168.2.1"/></p>
-         <br>DNS         : </br><p><input required id="wlan_dns" type="text" placeholder="ex. 192.168.2.1"/></p>
-         <br>dhcp anfang : </br><p><input required id="wlan_dhcpa" placeholder="ex. 192.168.2.1"/></p>
-         <br>dhcp End    : </br><p><input required id="wlan_dhcpe" type="text" placeholder="ex. 192.168.2.225"/></p>
+         <br>RouterIp    : </br><p><input required id="wlan_router" type="text" placeholder="ex. 192.168.2.1" value=""/></p>
+         <br>subnet      : </br><p><input required id="wlan_adresse" type="text" placeholder="ex. 192.168.2.0" value=""/></p>
+         <br>Submask     : </br><p><input required id="wlan_submask" type="text" placeholder="ex. 192.168.2.1" value=""/></p>
+         <br>DNS         : </br><p><input required id="wlan_dns" type="text" placeholder="ex. 192.168.2.1" value=""/></p>
+         <br>dhcp anfang : </br><p><input required id="wlan_dhcpa" placeholder="ex. 192.168.2.1" value=""/></p>
+         <br>dhcp End    : </br><p><input required id="wlan_dhcpe" type="text" placeholder="ex. 192.168.2.225" value=""/></p>
          <a href="eth1">&laquo; Previous</a>
          <input id="submit" type="submit" value="absenden"/>
        </div>
