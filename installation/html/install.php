@@ -44,6 +44,7 @@ $(document).ready(function() {
     }
   });
 });
+<!-- Herf next und vor funktion  -->
 $(document).ready(function() {
 $('a').on('click', function(event) {
 var inputherf = $(this).attr('href');
