@@ -6,7 +6,7 @@ source /etc/opennetwork/installation/confing_dns_dhcp.sh
 source /etc/opennetwork/installation/software_install.sh
 source /etc/opennetwork/installation/confing_wlan.sh
 source /etc/opennetwork/installation/confing_wlan_auto.sh
-source /etc/opennetwork/installation/installation/routing.sh
+source /etc/opennetwork/installation/routing.sh
 ####### Version 3
 software_chek(){
         result=`dpkg -s $software_name | grep 'Status: install ok installed' | echo 1`
