@@ -60,7 +60,8 @@ return false;
 $(document).ready(function(){
     $('#install_form').on('submit', function(e){
         e.preventDefault();
-       var install = "auto";
+        $(".wating").show();
+       var install = "conf";
        var wname = $("#wlan_name").val();
        var wpassword = $("#wlan_password").val();
        var eth0_a = $("#eth0_adresse").val();
@@ -105,15 +106,37 @@ $(document).ready(function(){
             },
             success: function(data){
                 $('#results').html(data);
+                $(".wating").hide();
             }
         });
     });
 });
-
 </script>
-<div id="results" style="margin-left:50px;font-size:small;padding: 10px;width:35%; overflow:auto;">
+<script>
+$(document).ready(function(){
+    $('#install_auto').on('submit', function(e){
+        e.preventDefault();
+        $(".wating").show();
+        var install = "auto";
+        $(".auto_install").hide();
+        $(".w3-animate-left").hide();
+         $.ajax({
+           type: "POST",
+           url: 'send.php',
+           data: {install: install},
+           success: function(data){
+           $('#results').html(data);
+           $(".wating").hide();
+           }
+       });
+   });
+});
+</script>
+<div class="wating" >
+  </div>
+  <div  id="results" style="margin-left:50px;font-size:small;padding: 10px;width:35%; overflow:auto;" >
 <!-- All data will display here  -->
-</div>
+  </div>
     <div class="w3-animate-left" style="margin-left:50px">
             <p><strong>Ersteinrichtung</strong></p>
             <input class="install" type="radio"  name="ip_menu" value="auto" /> Installation starten<br />
@@ -122,13 +145,13 @@ $(document).ready(function(){
 <div  class="w3-animate-left" style="margin-left:80px">
    <input type="radio" name="ip_menu" value="auto_install" />auto install<br />
     <div  class="auto_install modal-content w3-animate-left" style="margin-left:150px">
-      <form action="install.php?">
+      <form id="install_auto" method="post">
         <p>wollen Sie dass Ihre RPI automatische Einstellungen vorgenommen             </p>
         <p>RPI           ||  IP : DHCP - Auto                                          </p>
         <p>wlan          ||  Ip : 192.168.1.1/24    DHCP 192.168.1.100 - 192.168.1.254</p>
         <p>Eth1          ||  IP : 192.168.2.1/24    DHCP 192.168.2.100 - 192.168.2.254</p>
         <p>Wlan Name: OpenNwtwork     Wlan kanal : 10       Wlan Kenntwort : 4EMT7E9CPP </p>
-        <input type="submit" value="Submit">
+        <input id="submit" type="submit" value="absenden"/>
     </form>
    </div>
    <input  type="radio" name="ip_menu" value="pro_install" />erwertet install<br />
