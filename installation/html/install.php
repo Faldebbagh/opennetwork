@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="main.css">
 <body class="home">
   <script language="javascript" src="jquery.js" type="text/javascript"></script>
+  <!-- All java skripte -->
   <script>
 $(document).ready(function(){
   $('input[type="radio"]').click(function(){
