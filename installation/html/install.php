@@ -61,13 +61,11 @@ $(document).ready(function(){
        var eth1_r = $("#eth1_router").val();
        var eth1_a = $("#eth1_adresse").val();
        var eth1_sm = $("#eth1_submask").val();
-       var eth1_d = $("#eth1_dns").val();
        var eth1_dha = $("#eth1_dhcpa").val();
        var eth1_dhe = $("#eth1_dhcpe").val();
        var wlan_r = $("#wlan_router").val();
        var wlan_a = $("#wlan_adresse").val();
        var wlan_sm = $("#wlan_submask").val();
-       var wlan_d = $("#wlan_dns").val();
        var wlan_dha = $("#wlan_dhcpa").val();
        var wlan_dhe = $("#wlan_dhcpe").val();
        $(".wlan0").hide();
@@ -87,13 +85,11 @@ $(document).ready(function(){
               eth1_r: eth1_r,
               eth1_a: eth1_a,
               eth1_sm: eth1_sm,
-              eth1_d: eth1_d,
               eth1_dha: eth1_dha,
               eth1_dhe: eth1_dhe,
               wlan_r: wlan_r,
               wlan_a: wlan_a,
               wlan_sm: wlan_sm,
-              wlan_d: wlan_d,
               wlan_dha: wlan_dha,
               wlan_dhe: wlan_dhe,
             },
@@ -180,7 +176,6 @@ $(document).ready(function(){
           <br>RouterIp    : </br><p><input required id="eth1_router" type="text" placeholder="ex. 192.168.1.1" value=""/></p>
           <br>subnet      : </br><p><input required id="eth1_adresse" type="text" placeholder="ex. 192.168.1.0" value=""/></p>
           <br>Submask     : </br><p><input required id="eth1_submask" type="text"  placeholder="ex. 192.168.1.1" value=""/></p>
-          <br>DNS         : </br><p><input required id="eth1_dns" type="text"  placeholder="ex. 192.168.1.1" value=""/></p>
           <br>dhcp anfang : </br><p><input required id="eth1_dhcpa" type="text"  placeholder="ex. 192.168.1.1" value=""/></p>
           <br>dhcp End    : </br><p><input required id="eth1_dhcpe" type="text"  placeholder="ex. 192.168.1.255" value=""/></p>
           <br></br>
@@ -192,7 +187,6 @@ $(document).ready(function(){
          <br>RouterIp    : </br><p><input required id="wlan_router" type="text" placeholder="ex. 192.168.2.1" value=""/></p>
          <br>subnet      : </br><p><input required id="wlan_adresse" type="text" placeholder="ex. 192.168.2.0" value=""/></p>
          <br>Submask     : </br><p><input required id="wlan_submask" type="text" placeholder="ex. 192.168.2.1" value=""/></p>
-         <br>DNS         : </br><p><input required id="wlan_dns" type="text" placeholder="ex. 192.168.2.1" value=""/></p>
          <br>dhcp anfang : </br><p><input required id="wlan_dhcpa" placeholder="ex. 192.168.2.1" value=""/></p>
          <br>dhcp End    : </br><p><input required id="wlan_dhcpe" type="text" placeholder="ex. 192.168.2.225" value=""/></p>
          <a href="eth1">&laquo; Previous</a>
