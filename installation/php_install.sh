@@ -11,7 +11,7 @@ install_start(){
 #  sudo apt install php -y
   clear
   echo "php ALL=(ALL) ALL" >> /etc/sudoers
-  cp -r ./installation/html  /var/www/html_test
+  cp -r ./installation/html  /var/www/html
  	if [ -d "/etc/opennetwork" ];then
 	  cp -r ./ /etc/opennetwork
 	else
