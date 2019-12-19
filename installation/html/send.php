@@ -11,13 +11,11 @@ $keys = [
   'eth1_r',
   'eth1_a',
   'eth1_sm',
-  'eth1_d',
   'eth1_dha',
   'eth1_dhe',
   'wlan_r',
   'wlan_a',
   'wlan_sm',
-  'wlan_d',
   'wlan_dha',
   'wlan_dhe'
 ];
@@ -32,22 +30,20 @@ echo "Bitte laden sie Die Seite nicht neu weiter installation info werden hier a
 echo "<p>"."Ihre Wlan name     :" . $values["wname"] . "</p>";
 echo "Thre Wlan password :".  $values["wpassword"] . "<p></p>";
 echo "eth0 network Einstellung :" . "<p></p>";
-echo "- Ip Adresse    :".  $values["eth0_adresse"] . "<p></p>";
-echo "- submask       :".  $values["eth0_mask"]. "<p></p>";
-echo "- DNS           :".  $values["eth0_dns"] . "<p></p>";
+echo "- Ip Adresse    :".  $values["eth0_a"] . "<p></p>";
+echo "- submask       :".  $values["eth0_m"]. "<p></p>";
+echo "- DNS           :".  $values["eth0_d"] . "<p></p>";
 echo "- Gateway       :".  $values["eth0_g"] . "<p></p>";
 echo "eth1 network Einstellung" . "<p></p>";
 echo "- Ip Adresse    :".  $values["eth1_r"] . "<p></p>";
 echo "- subnet        :".  $values["eth1_a"] . "<p></p>";
 echo "- Submask       :".  $values["eth1_sm"] . "<p></p>";
-echo "- DNS           :".  $values["eth1_d"] . "<p></p>";
-echo "- dhcp anfang   :".  $values["eth1_dhcpa"] . "<p></p>";
-echo "- dhcp ende     :".  $values["eth1_dhcpe"] . "<p></p>";
+echo "- dhcp anfang   :".  $values["eth1_dha"] . "<p></p>";
+echo "- dhcp ende     :".  $values["eth1_dhe"] . "<p></p>";
 echo "WLAN network Einstellung" . "<p></p>";
 echo "- Ip Adresse    :".  $values["wlan_r"] . "<p></p>";
 echo "- subnet        :". $values["wlan_a"]  . "<p></p>";
 echo "- Submask       :".  $values["wlan_sm"] . "<p></p>";
-echo "- DNS           :".  $values["wlan_d"] . "<p></p>";
 echo "- dhcp anfang   :".  $values["wlan_dha"] . "<p></p>";
 echo "- dhcp ende     :".  $values["wlan_dhe"] . "<p></p>";
 
@@ -58,6 +54,7 @@ foreach ($values as $value) {
 $wlan = shell_exec("sudo /etc/opennetwork/verwaltung/php_verwaltung.sh Z ".$string );
 echo $wlan;
 }
+
 
 if ($in == "auto"){
   echo "<h3>" . "Ihre Installation Wird gestartet" . "</h3>";
