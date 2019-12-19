@@ -160,10 +160,11 @@ status(){
 }
 
 php_install_auto(){
- benutzer_auswahl="y"
- benutzer_angabe="y"
  sudo bash '/etc/opennetwork/installation/install.sh' auto
+}
 
+php_install_conf(){
+sudo bash '/etc/opennetwork/installation/install.sh' confing
 }
 zurck(){
 	rm $ip_list
@@ -231,8 +232,36 @@ if [ $# -gt 0 ];then
 		status
                 ;;
                 [xX])
-                 php_install_auto
+                php_install_auto
                 ;;
+                [zZ])
+                #php_install_conf
+                echo "Hallo Hallo"
+                valeu=()
+                for var in "$@"
+                do
+                   valeu+=($var)
+                done
+                wname="${valeu[1]}"
+		            wpassword="${valeu[2]}"
+                rpi_ip="${valeu[3]}"
+                rpi_mask="${valeu[4]}"
+                rpi_dns="${valeu[5]}"
+                rpi_gateway="${valeu[6]}"
+                eth1_ip="${valeu[7]}"
+                eth1_subnet="${valeu[8]}"
+                eth1_mask="${valeu[9]}"
+                eth1_dhcp="${valeu[10]} ${valeu[11]}"
+                wlan0_ip="${valeu[12]}"
+                wlan0_subnet="${valeu[13]}"
+                wlan0_mask="${valeu[14]}"
+                wlan0_dhcp="${valeu[15]} ${valeu[16]}"
+                echo "<h1>" $wname $wpassword "</h1>"
+                echo "<h1>" $rpi_ip $rpi_mask $rpi_dns "</h1>"
+                echo "<h1>" $eth1_ip $eth1_subnet $eth1_mask $eth1_dhcp "</h1>"
+                echo "<h1>" $wlan0_ip $wlan0_subnet $wlan0_mask $wlan0_dhcp "</h1>"
+                ;;
+
 
         *)
             ;;
