@@ -57,6 +57,7 @@ $(document).ready(function(){
        var eth0_a = $("#eth0_adresse").val();
        var eth0_m = $("#eth0_mask").val();
        var eth0_d = $("#eth0_dns").val();
+       var eth0_g = $("#eth0_get").val();
        var eth1_r = $("#eth1_router").val();
        var eth1_a = $("#eth1_adresse").val();
        var eth1_sm = $("#eth1_submask").val();
@@ -82,10 +83,11 @@ $(document).ready(function(){
               eth0_a: eth0_a,
               eth0_m: eth0_m,
               eth0_d: eth0_d,
+              eth0_g: eth0_g,
               eth1_r: eth1_r,
               eth1_a: eth1_a,
               eth1_sm: eth1_sm,
-              sth1_d: eth1_d,
+              eth1_d: eth1_d,
               eth1_dha: eth1_dha,
               eth1_dhe: eth1_dhe,
               wlan_r: wlan_r,
@@ -169,6 +171,7 @@ $(document).ready(function(){
         <br>eth0 IpAdress  :</br><p><input required id="eth0_adresse" type="text" placeholder="ex. 192.168.178.1" value=""/></p>
         <br>eth0 Submask   :</br><p><input required id="eth0_mask" type="text" placeholder="ex. 255.255.255.0" value=""/></p>
         <br>eth0 DNS       :</br><p><input required id="eth0_dns" type="text" placeholder="ex. 192.168.178.1" value=""/></p>
+        <br>eth0 Gateway       :</br><p><input required id="eth0_get" type="text" placeholder="ex. 192.168.178.1" value=""/></p>
         <a href="wlan">&laquo; Previous</a>
         <a href="eth1">Next &raquo;</a>
        </div>
@@ -193,7 +196,7 @@ $(document).ready(function(){
          <br>dhcp anfang : </br><p><input required id="wlan_dhcpa" placeholder="ex. 192.168.2.1" value=""/></p>
          <br>dhcp End    : </br><p><input required id="wlan_dhcpe" type="text" placeholder="ex. 192.168.2.225" value=""/></p>
          <a href="eth1">&laquo; Previous</a>
-         <input id="submit" type="submit" value="absenden"/>
+         <input  type="submit" value="absenden"/>
        </div>
      </form>
    </div>
