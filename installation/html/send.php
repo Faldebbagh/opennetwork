@@ -1,30 +1,13 @@
 <?php
 $in=$_POST['install'];
 if ($in == "conf"){
-$wn=$_POST['wname'];
-$wp=$_POST['wpassword'];
-$et0_a=$_POST['eth0_a'];
-$et0_m=$_POST['eth0_m'];
-$et0_d=$_POST['eth0_d'];
-$et1_r=$_POST['eth1_r'];
-$et1_a=$_POST['eth1_a'];
-$et1_sm=$_POST['eth1_sm'];
-$et1_d=$_POST['eth1_d'];
-$et1_dha=$_POST['eth1_dha'];
-$et1_dhe=$_POST['eth1_dhe'];
-$wl_r=$_POST['wlan_r'];
-$wl_a=$_POST['wlan_a'];
-$wl_sm=$_POST['wlan_sm'];
-$wl_d=$_POST['wlan_d'];
-$wl_dha=$_POST['wlan_dha'];
-$wl_dhe=$_POST['wlan_dhe'];
-
 $keys = [
   'wname',
   'wpassword',
   'eth0_a',
   'eth0_m',
   'eth0_d',
+  'eth0_g',
   'eth1_r',
   'eth1_a',
   'eth1_sm',
@@ -47,38 +30,33 @@ foreach ($keys as $key) {
 echo "<h3>" . "Ihre Installation Wird mit die Folgende Einstellung gestartet" . "</h3>";
 echo "Bitte laden sie Die Seite nicht neu weiter installation info werden hier angezeigt" . "<p></p>" ;
 echo "<p>"."Ihre Wlan name     :" . $values["wname"] . "</p>";
-echo "Thre Wlan password :".  $wp . "<p></p>";
+echo "Thre Wlan password :".  $values["wpassword"] . "<p></p>";
 echo "eth0 network Einstellung :" . "<p></p>";
-echo "- Ip Adresse    :".  $et0_a . "<p></p>";
-echo "- submask       :".  $et0_m . "<p></p>";
-echo "- DNS           :".  $et0_d . "<p></p>";
+echo "- Ip Adresse    :".  $values["eth0_adresse"] . "<p></p>";
+echo "- submask       :".  $values["eth0_mask"]. "<p></p>";
+echo "- DNS           :".  $values["eth0_dns"] . "<p></p>";
+echo "- Gateway       :".  $values["eth0_g"] . "<p></p>";
 echo "eth1 network Einstellung" . "<p></p>";
-echo "- Ip Adresse    :".  $et1_r . "<p></p>";
-echo "- subnet        :".  $et1_a . "<p></p>";
-echo "- Submask       :".  $et1_sm . "<p></p>";
-echo "- DNS           :".  $et1_d . "<p></p>";
-echo "- dhcp anfang   :".  $et1_dha . "<p></p>";
-echo "- dhcp ende     :".  $et1_dhe . "<p></p>";
+echo "- Ip Adresse    :".  $values["eth1_r"] . "<p></p>";
+echo "- subnet        :".  $values["eth1_a"] . "<p></p>";
+echo "- Submask       :".  $values["eth1_sm"] . "<p></p>";
+echo "- DNS           :".  $values["eth1_d"] . "<p></p>";
+echo "- dhcp anfang   :".  $values["eth1_dhcpa"] . "<p></p>";
+echo "- dhcp ende     :".  $values["eth1_dhcpe"] . "<p></p>";
 echo "WLAN network Einstellung" . "<p></p>";
-echo "- Ip Adresse    :".  $wl_r . "<p></p>";
-echo "- subnet        :".  $wl_a . "<p></p>";
-echo "- Submask       :".  $wl_sm . "<p></p>";
-echo "- DNS           :".  $wl_d . "<p></p>";
-echo "- dhcp anfang   :".  $wl_dha . "<p></p>";
-echo "- dhcp ende     :".  $wl_dhe . "<p></p>";
+echo "- Ip Adresse    :".  $values["wlan_r"] . "<p></p>";
+echo "- subnet        :". $values["wlan_a"]  . "<p></p>";
+echo "- Submask       :".  $values["wlan_sm"] . "<p></p>";
+echo "- DNS           :".  $values["wlan_d"] . "<p></p>";
+echo "- dhcp anfang   :".  $values["wlan_dha"] . "<p></p>";
+echo "- dhcp ende     :".  $values["wlan_dhe"] . "<p></p>";
 
 $string = "";
 foreach ($values as $value) {
   $string = $string.'"'.$value.'"'.' ';
 }
-$wlan_change = shell_exec("sudo /etc/opennetwork/verwaltung/php_verwaltung.sh Z ".$string );
-// $wlan="$wn  \r\n $wp \r\n $eth0_a \r\n $eth0_m \r\n $eth0_d \r\n $eth1_r \r\n $eth1_a \r\n $eth1_sm \r\n $eth1_d \r\n $eth1_dha \r\n $eth1_dhe \r\n $eth1_r \r\n $eth1_a";
-// $datei ="\var\www\html\temp";
-// $handle = fopen ($datei, w);
-// fwrite ($handle, $wlan);
-// fclose ($handle);
-
-
+$wlan = shell_exec("sudo /etc/opennetwork/verwaltung/php_verwaltung.sh Z ".$string );
+echo $wlan;
 }
 
 if ($in == "auto"){
