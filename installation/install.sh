@@ -16,7 +16,7 @@ software_chek(){
         echo "FAIL !!!!" "<p></p>"
         echo "Der Paket $software_name waurde nicht Rechtig installiert"  "<p></p>"
         echo "Bitte kontroliren Sie mit 'journal -xe'"
-        exit
+        exit 5
 	fi
 }
 if [ "$1" == "auto" ]
@@ -52,6 +52,15 @@ if [ "$1" == "auto" ]
   routing
   messeg="Die Installation wurde erfolgreich abgeschlossen"
   echo "<script type='text/javascript'>alert('$messeg');</script>";
+exit 5
+fi
+if [ "$1" == "confing" ]
+  then
+	benutzer_auswahl="Y"
+	benutzer_angabe="N"
+  benutzer_install_art="W"
+  software_install
+  confing_static
 exit 5
 fi
 confing_art(){
