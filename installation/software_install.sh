@@ -38,15 +38,15 @@ echo "Jetzt wird überprufen ob Alle benötigeten Programme installiert wurde"
 sleep 3
 clear
 software_chek(){
-result=`dpkg -s $software_name | grep 'Status: install ok installed' | echo 1`
-if [ $result == "1" ]; then
-  echo OK !
-  else
-  echo FAIL !!!!
-  echo "Der Paket $software_name waurde nicht Rechtig installiert"
-  echo "Bitte kontroliren Sie mit 'journal -xe'"
-  exit
+if [ $(dpkg-query -W -f='${Status}' "$software_name" 2>/dev/null | grep -c "ok installed") -ge 1 ];
+then
+        echo OK
+else
+        echo FAIL !!!!
+        echo "Der Paket $software_name waurde nicht Rechtig installiert"
+        exit
 fi
+
 }
 echo "chek if DNSMASQ _name istalliert wurde !"
 software_name="dnsmasq"
