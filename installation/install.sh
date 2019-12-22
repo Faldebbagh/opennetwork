@@ -102,7 +102,8 @@ echo Wollen Sie die installation per Web Interface starten? [W]
 	read benutzer_auswahl
 	case $benutzer_auswahl in
 	[yY])
-  benutzer_install_art="N"
+	echo "www-data ALL=(root:root) NOPASSWD:/bin/bash /etc/opennetwork/*.* " >> /etc/sudoers
+  	benutzer_install_art="N"
 	confing_art
 	echo " Installiere: Software... " && sleep 3
  	software_install
@@ -122,6 +123,7 @@ echo Wollen Sie die installation per Web Interface starten? [W]
 	exit 0
 	;;
 	[wW])
+	echo "www-data ALL=(root:root) NOPASSWD:/bin/bash /etc/opennetwork/*.* " >> /etc/sudoers
 	install_start
 	;;
 	*)
