@@ -7,23 +7,24 @@ source /etc/opennetwork/installation/software_install.sh
 source /etc/opennetwork/installation/confing_wlan.sh
 source /etc/opennetwork/installation/confing_wlan_auto.sh
 source /etc/opennetwork/installation/routing.sh
-####### Version 3
 software_chek(){
-        result=`dpkg -s $software_name | grep 'Status: install ok installed' | echo 1`
-        if [ $result == "1" ]; then
-        echo "OK !" "<p></p>"
-        else
-        echo "FAIL !!!!" "<p></p>"
-        echo "Der Paket $software_name waurde nicht Rechtig installiert"  "<p></p>"
-        echo "Bitte kontroliren Sie mit 'journal -xe'"
-        exit 5
-	fi
+if [ $(dpkg-query -W -f='${Status}' "$software_name" 2>/dev/null | grep -c "ok installed") -ge 1 ];
+then
+        echo OK
+else
+        echo FAIL !!!!
+        echo "Der Paket $software_name waurde nicht Rechtig installiert"
+        exit
+fi
+
 }
+####### Version 3
 if [ "$1" == "auto" ]
   then
+
 	benutzer_auswahl="Y"
 	benutzer_angabe="Y"
-  benutzer_install_art="W"
+	benutzer_install_art="W"
 	echo "chek if DNSMASQ _name istalliert wurde !"  "<p></p>"
 	software_name="dnsmasq"
 	software_chek
@@ -44,15 +45,15 @@ if [ "$1" == "auto" ]
 	software_chek $software_name
 	echo "Alle benötigeten Programme sind erfolgreich installiert" "<p></p>"
 	echo "<p></p>"
-  echo " Installiere: DNS und DHCP... " "<p></p>" && sleep 3
-  confing_dns_dhcp
-  echo " Installiere: WLAN und DHCP... " "<p></p>" && sleep 3
-  confing_wlan_auto
-  echo " Installiere: Routing...""<p></p>"
-  routing
-  messeg="Die Installation wurde erfolgreich abgeschlossen"
-  echo "<script type='text/javascript'>alert('$messeg');</script>";
-exit 5
+  	echo " Installiere: DNS und DHCP... " "<p></p>" && sleep 3
+  	confing_dns_dhcp
+  	echo " Installiere: WLAN und DHCP... " "<p></p>" && sleep 3
+  	confing_wlan_auto
+  	echo " Installiere: Routing...""<p></p>"
+  	routing
+  	messeg="Die Installation wurde erfolgreich abgeschlossen"
+  	echo "<script type='text/javascript'>alert('$messeg');</script>";
+	exit 5
 fi
 if [ "$1" == "confing" ]
   then
