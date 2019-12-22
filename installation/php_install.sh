@@ -10,7 +10,6 @@ install_start(){
   echo Installiere PHP7
 #  sudo apt install php -y
   clear
-  echo "www-data ALL=(root:root) NOPASSWD:/bin/bash /etc/opennetwork/*.* " >> /etc/sudoers
   cp -r ./installation/html  /var/www/html
  	if [ -d "/etc/opennetwork" ];then
 	  cp -r ./ /etc/opennetwork
