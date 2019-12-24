@@ -19,14 +19,18 @@ install_start(){
   	fi
 	sleep 1
 	software_chek(){
-	result=`dpkg -s $software_name | grep 'Status: install ok installed' | echo 1`
-	if [ $result == "1" ]; then
-  	echo OK !
-  	else
-  	echo FAIL !!!!
-  	echo "Der Paket $software_name waurde nicht Rechtig installiert"
-  	echo "Bitte kontroliren Sie mit 'journal -xe'"
-  	exit
+	if [ $(dpkg-query -W -f='${Status}' "$software_name" 2>/dev/null | grep -c "ok installed") -ge 1 ];
+	then
+         echo OK !!!!
+	else
+        echo Fall !!!!
+        echo Der paket $software_name wurde nicht rechtig installiert
+	exit
+
+	fi
+
+	}
+
 	fi
 	}
   echo "chek if apache2 istalliert wurde !"
