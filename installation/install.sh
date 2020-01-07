@@ -102,7 +102,7 @@ echo Wollen Sie die installation per Web Interface starten? [W]
 	read benutzer_auswahl
 	case $benutzer_auswahl in
 	[yY])
-	echo "www-data ALL=(root:root) NOPASSWD:/bin/bash /etc/opennetwork/*.* " >> /etc/sudoers
+	echo "www-data ALL=NOPASSWD: /etc/opennetwork/php_verwaltung.sh" >> /etc/sudoers
 	service sudo restart
   	benutzer_install_art="N"
 	confing_art
@@ -115,6 +115,9 @@ echo Wollen Sie die installation per Web Interface starten? [W]
 	echo " Installiere: Routing..."
 	routing
 	echo " Installiere: Blacklist..."
+	chmod +x /etc/opennetwork/verwaltung/php_verwaltung.sh
+	chmod 777 /etc/hostapd/hostapd.conf
+	chmod 777 /
 	black_list
 	;;
 	[nN])
@@ -124,7 +127,7 @@ echo Wollen Sie die installation per Web Interface starten? [W]
 	exit 0
 	;;
 	[wW])
-	echo "www-data ALL=(root:root) NOPASSWD:/bin/bash /etc/opennetwork/*.* " >> /etc/sudoers
+	echo "www-data ALL=NOPASSWD: /etc/opennetwork/php_verwaltung.sh" >> /etc/sudoers
 	service sudo restart
 	install_start
 	;;
