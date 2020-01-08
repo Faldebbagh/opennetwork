@@ -24,10 +24,6 @@ echo "Bitte warten........"
 sudo apt install hostapd -y
 sleep 1
 clear
-echo "Installiere DHCP server "
-echo "_______ISC DHCP SERVER_________"
-echo "Bitte warten...................."
-sudo apt install  isc-dhcp-server -y
 echo "Installiere apache2 Web-Servie\nfür das Webpanel"
 sudo apt install apache2 -y
 sleep 1
