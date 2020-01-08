@@ -2,24 +2,24 @@
 error_reporting(E_ALL);
     switch($_GET['wlan']) {
         case 1:
-            $wlan_aus = shell_exec('sudo /etc/opennetwork/verwaltung/php_verwaltung.sh A');
+            $wlan_aus = shell_exec('bash /etc/opennetwork/verwaltung/php_verwaltung.sh A');
             echo "<pre>$wlan_aus</pre>";
             break;
 
         case 2:
-            $wlan_an = shell_exec('sudo /etc/opennetwork/verwaltung/php_verwaltung.sh B');
+            $wlan_an = shell_exec('bash /etc/opennetwork/verwaltung/php_verwaltung.sh B');
             echo "<pre>$wlan_an</pre>";
             break;
 
         case 3:
-            $wlan_info = shell_exec('sudo /etc/opennetwork/verwaltung/php_verwaltung.sh E');
+            $wlan_info = shell_exec('bash /etc/opennetwork/verwaltung/php_verwaltung.sh E');
             echo "<pre>$wlan_info</pre>";
             break;
 
         case 4:
             $wlan_name=$_GET['wlan_name'];
             $wlan_password=$_GET['wlan_password'];
-            $wlan_change = shell_exec("sudo /etc/opennetwork/verwaltung/php_verwaltung.sh D '".$wlan_name."' '".$wlan_password."'");
+            $wlan_change = shell_exec("bash /etc/opennetwork/verwaltung/php_verwaltung.sh D '".$wlan_name."' '".$wlan_password."'");
             echo $wlan_change;
             break;
 
@@ -31,7 +31,7 @@ error_reporting(E_ALL);
         case 1:
             $ip_sperr=$_GET['ip'];
 	    if (!empty($ip_sperr)){
-	    $ip_change = shell_exec("sudo /etc/opennetwork/verwaltung/php_verwaltung.sh S '".$ip_sperr."'");
+	    $ip_change = shell_exec("bash /etc/opennetwork/verwaltung/php_verwaltung.sh S '".$ip_sperr."'");
             echo $ip_change;
 	    }
             break;
@@ -39,7 +39,7 @@ error_reporting(E_ALL);
         case 2:
             $ip_entsperr=$_GET['ip'];
             if (!empty($ip_entsperr)){
-	             $ip_change = shell_exec("sudo /etc/opennetwork/verwaltung/php_verwaltung.sh N '".$ip_entsperr."'");
+	             $ip_change = shell_exec("bash /etc/opennetwork/verwaltung/php_verwaltung.sh N '".$ip_entsperr."'");
                echo $ip_change;
 		}
             break;
@@ -47,24 +47,24 @@ error_reporting(E_ALL);
         case 3:
             $mac_sperr=$_GET['mac'];
             $mac_sperr_user=$_GET['mac_user'];
-            $mac_change = shell_exec("sudo /etc/opennetwork/verwaltung/php_verwaltung.sh M '".$mac_sperr."' '".$mac_sperr_user."'");
+            $mac_change = shell_exec("bash /etc/opennetwork/verwaltung/php_verwaltung.sh M '".$mac_sperr."' '".$mac_sperr_user."'");
             echo $mac_change;
             break;
 
         case 4:
             $mac_entsperr=$_GET['mac'];
-            $mac_change = shell_exec("sudo /etc/opennetwork/verwaltung/php_verwaltung.sh V '".$mac_entsperr."'");
+            $mac_change = shell_exec("bash /etc/opennetwork/verwaltung/php_verwaltung.sh V '".$mac_entsperr."'");
             echo $mac_change;
             break;
 
         case 5:
             $web_sperr=$_GET['web'];
-            $web_change = shell_exec("sudo /etc/opennetwork/verwaltung/php_verwaltung.sh W '".$web_sperr."'");
+            $web_change = shell_exec("bash /etc/opennetwork/verwaltung/php_verwaltung.sh W '".$web_sperr."'");
             echo $web_change;
             break;
         case 6:
             $web_entsperr=$_GET['web'];
-            $web_change = shell_exec("sudo /etc/opennetwork/verwaltung/php_verwaltung.sh Y '".$web_entsperr."'");
+            $web_change = shell_exec("bash /etc/opennetwork/verwaltung/php_verwaltung.sh Y '".$web_entsperr."'");
             echo $web_change;
             break;
         default:
@@ -166,7 +166,7 @@ error_reporting(E_ALL);
     <span class="close">&times;</span>
 <div class="modal-content">
 		<?php
-		$wlan_info=shell_exec('sudo /etc/opennetwork/verwaltung/php_verwaltung.sh E');
+		$wlan_info=shell_exec('bash /etc/opennetwork/verwaltung/php_verwaltung.sh E');
 		echo $wlan_info; ?>
 	</div>
 </div>
@@ -175,17 +175,17 @@ error_reporting(E_ALL);
 		<h1>Sperr Listen</h1>
 		<h3>gesperrte websieten</h3>
 			<div class="scroll_web"><?php
-			$web=shell_exec('sudo /etc/opennetwork/verwaltung/php_verwaltung.sh F');
+			$web=shell_exec('bash /etc/opennetwork/verwaltung/php_verwaltung.sh F');
 			echo $web; ?> </div>
 		<h1>__________________________________</h1>
 		<h3>gesperrte Ip Adressen</h3>
 	  <div class="scroll2"><?php
-		$ip=shell_exec('sudo /etc/opennetwork/verwaltung/php_verwaltung.sh G');
+		$ip=shell_exec('bash /etc/opennetwork/verwaltung/php_verwaltung.sh G');
 		echo $ip; ?> </div>
 		<h1>__________________________________</h1>
 		<h3>gesperrte Mac Adressen</h3>
 			<div class="scroll_mac"><?php
-				$mac=shell_exec('sudo /etc/opennetwork/verwaltung/php_verwaltung.sh H');
+				$mac=shell_exec('bash /etc/opennetwork/verwaltung/php_verwaltung.sh H');
 				echo $mac; ?></div>
 			</div>
 <div id="sys_status" class="w3-container Inhalt w3-animate-left" style="display:none" >
@@ -193,13 +193,13 @@ error_reporting(E_ALL);
 	<div class="scroll_dinst">
 		<h3>Dinste Status</h3>
 		<?php
-		$stu=shell_exec('sudo /etc/opennetwork/verwaltung/php_verwaltung.sh');
+		$stu=shell_exec('bash /etc/opennetwork/verwaltung/php_verwaltung.sh');
 		echo $stu; ?>
 	</div>
 	<div class="scroll">
 		<h3>Verbunde Geräte</h3>
 		<?php
-		$di=shell_exec('sudo /etc/opennetwork/verwaltung/php_verwaltung.sh C');
+		$di=shell_exec('bash /etc/opennetwork/verwaltung/php_verwaltung.sh C');
 		echo $di; ?>
 	</div>
 </div>
