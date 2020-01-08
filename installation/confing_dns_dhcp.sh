@@ -13,36 +13,9 @@ no-dhcp-interface=eth0
 dhcp-range=interface:eth1,192.168.2.100,192.168.2.254,24h
 #dhcp breich für wlan Interface
 dhcp-range=interface:wlan0,192.168.1.100,192.168.1.254,24h
+resolv-file=/etc/resolve.conf
 "
 
-dhcp_auto="
-ddns-update-style none;
-authoritative;
-log-facility local7;
-
-subnet 192.168.2.0 netmask 255.255.255.0 {
- option routers 192.168.2.1;
- option subnet-mask 255.255.255.0;
- option broadcast-address 192.168.2.255;
- option domain-name-servers 192.168.2.1;
- option domain-name "eth1.lan";
- default-lease-time 600;
- max-lease-time 7200;
- range 192.168.2.2 192.168.2.200;
-}
-
-subnet 192.168.1.0 netmask 255.255.255.0 {
- option routers 192.168.1.1;
- option subnet-mask 255.255.255.0;
- option broadcast-address 192.168.1.255;
- option domain-name-servers 192.168.1.1;
- option domain-name "wlan0.lan";
- default-lease-time 600;
- max-lease-time 7200;
- range 192.168.1.2 192.168.1.200;
-}
-
-"
 
 interface_auto="auto lo
 iface lo inet loopback
@@ -77,9 +50,6 @@ sleep 4
 clear
 echo $meldung_dhcp
 echo $meldung_warten
-sudo cat <<EOT >> /etc/dhcpcd.conf
-$dhcp_auto
-EOT
 sleep 4
 clear
 echo $meldung_fertig
@@ -107,6 +77,7 @@ no-dhcp-interface=eth0
 dhcp-range=interface:eth1,$eth1_dhcp,24h
 #dhcp breich für wlan Interface
 dhcp-range=interface:wlan0,$wlan1_dhcp,24h
+resolv-file=/etc/resolve.conf
 EOT
 clear
 sleep 4
@@ -149,34 +120,7 @@ echo $meldung_fertig
 sleep 4
 echo $meldung_dhcp
 echo $meldung_warten
-sudo cat <<EOT >> /etc/dhcpcd.conf
-ddns-update-style none;
-authoritative;
-log-facility local7;
 
-subnet $eth1_subnet netmask 255.255.255.0 {
- option routers eth1_ip;
- option subnet-mask 255.255.255.0;
- option broadcast-address 192.168.2.255;
- option domain-name-servers $eth1_ip;
- option domain-name "eth1.lan";
- default-lease-time 600;
- max-lease-time 7200;
- range $eth1_dhcp;
-}
-
-subnet 192.168.1.0 netmask 255.255.255.0 {
- option routers 192.168.1.1;
- option subnet-mask 255.255.255.0;
- option broadcast-address 192.168.1.255;
- option domain-name-servers 192.168.1.1;
- option domain-name "wlan0.lan";
- default-lease-time 600;
- max-lease-time 7200;
- range 192.168.1.2 192.168.1.200;
-}
-
-EOT
 sleep 4
 clear
 echo $meldung_fertig
